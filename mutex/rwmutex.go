@@ -9,13 +9,23 @@ import (
 	"time"
 )
 
+/*
+	1) The producer function’s second parameter is
+	of the type sync.Locker. This interface has
+	two methods, Lock and Unlock, which
+	the Mutex and RWMutex types satisfy.
+
+	2) Here we make the producer sleep for one second
+	to make it less active than the observer goroutines.
+*/
+
 func main() {
-	producer := func(wg *sync.WaitGroup, l sync.Locker) {
+	producer := func(wg *sync.WaitGroup, l sync.Locker) { // 1)
 		defer wg.Done()
 		for i := 5;  i > 0 ; i-- {
 			l.Lock()
 			l.Unlock()
-			time.Sleep(1)
+			time.Sleep(1) // 2)
 		}
 	}
 
