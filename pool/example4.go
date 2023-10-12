@@ -8,6 +8,17 @@ import (
 	"time"
 )
 
+/*
+	So when working with a Pool, just remember the following points:
+		* When instantiating sync.Pool, give it a New member variable that is thread-safe
+		when called.
+		* When you receive an instance from Get, make no assumptions regarding the
+		state of the object you receive back.
+		* Make sure to call Put when you’re finished with the object you pulled out of the
+		pool. Otherwise, the Pool is useless. Usually this is done with defer.
+		* Objects in the pool must be roughly uniform in makeup.
+*/
+
 func connectToService() interface{} {
 	time.Sleep(1*time.Second)
 	return struct{}{}
