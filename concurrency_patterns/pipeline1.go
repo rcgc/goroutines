@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// This is batch processing
 func main() {
 	multiply := func(values []int, multiplier int) []int {
 		multipliedValues := make([]int, len(values))
